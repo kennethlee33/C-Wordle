@@ -161,7 +161,7 @@ bool print_hints(char* answer, char* guess) {
 
   // for printing out hint
   // (0 = grey, 1 = yellow, 2 = green)
-  int hint[5];
+  int hint[WORD_LENGTH];
 
   // count letters in answer
   int ans_letter_count[26] = {0};
@@ -169,14 +169,19 @@ bool print_hints(char* answer, char* guess) {
     ans_letter_count[answer[i] - 'a']++;
   }
 
-  // logic for designating hints and counting
-  // correct letters
+  // prioritize checking all correct letters before anything else
   int correct_letters = 0;
   for (int i = 0; i < WORD_LENGTH; i++) {
     if (answer[i] == guess[i]) {
       correct_letters++;
       hint[i] = 2;
       ans_letter_count[guess[i] - 'a']--;
+    }
+  }
+
+  // logic for designating hints
+  for (int i = 0; i < WORD_LENGTH; i++) {
+    if (answer[i] == guess[i]) {
       continue;
     }
     if (ans_letter_count[guess[i] - 'a'] != 0) {
