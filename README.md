@@ -5,6 +5,7 @@ Wordle game made in C
 ## Installation
 
 Download the latest C-Wordle executable file in releases
+OR clone the repository and run the ```make``` command inside it to compile the binary locally
 
 ## Usage
 
